@@ -1,0 +1,6 @@
+{
+  "name": "Overkill",
+  "description": "Why say it simply when you can over-engineer it? Transform everyday thoughts into absurd corporate jargon, LinkedIn flexes, and startup founder buzzwords.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

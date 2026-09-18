@@ -1,0 +1,397 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Overkill 🚀</title>
+    <meta name="description" content="Why say it simply when you can over-engineer it?" />
+    <meta property="og:title" content="Overkill 🚀" />
+    <meta property="og:description" content="Why say it simply when you can over-engineer it?" />
+    <meta property="og:type" content="website" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ['"Plus Jakarta Sans"', 'system-ui', '-apple-system', 'sans-serif'],
+              mono: ['"JetBrains Mono"', 'monospace'],
+            }
+          }
+        }
+      }
+    </script>
+  </head>
+  <body class="bg-amber-50/50 text-black min-h-screen font-sans antialiased flex flex-col justify-center items-center px-4 py-8 selection:bg-yellow-300 selection:text-black">
+    <!-- Main Card Container -->
+    <main class="w-full max-w-xl mx-auto" id="main-container">
+      <div class="bg-white border-2 border-black rounded-lg p-6 sm:p-8 shadow-[6px_6px_0px_0px_rgba(0,0,0,1)] transition-all" id="app-card">
+        
+        <!-- Header Section -->
+        <header class="mb-6 text-center" id="header-section">
+          <h1 class="text-3xl sm:text-4xl font-black tracking-tight text-black mb-2 flex items-center justify-center gap-2" id="app-title">
+            <span class="bg-yellow-300 px-3 py-1 border-2 border-black shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] rounded-md inline-block">Overkill</span>
+            <span>🚀</span>
+          </h1>
+          <p class="text-zinc-800 font-semibold text-sm sm:text-base" id="app-subtitle">
+            Why say it simply when you can over-engineer it?
+          </p>
+        </header>
+
+        <!-- Input Section -->
+        <section class="space-y-2 mb-5" id="input-section">
+          <div class="flex items-center justify-between" id="input-bar">
+            <label for="thought-input" class="text-xs font-bold text-black tracking-wide uppercase" id="input-label">
+              Your Thought
+            </label>
+            <button
+              type="button"
+              id="btn-surprise"
+              class="text-xs font-bold text-black bg-white hover:bg-yellow-200 border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none rounded-md px-2.5 py-1 transition-all inline-flex items-center gap-1 cursor-pointer"
+            >
+              <span>🎲</span>
+              <span>Surprise Me</span>
+            </button>
+          </div>
+
+          <textarea
+            id="thought-input"
+            rows="3"
+            placeholder="e.g., I drank a cup of coffee..."
+            class="w-full bg-white border-2 border-black rounded-lg p-3.5 text-sm sm:text-base text-black placeholder:text-zinc-400 focus:outline-none focus:bg-yellow-50/50 shadow-[3px_3px_0px_0px_rgba(0,0,0,1)] transition-all resize-none font-medium"
+          ></textarea>
+        </section>
+
+        <!-- Tone Selector (Segmented Pill Buttons) -->
+        <section class="mb-6" id="tone-section">
+          <div class="text-xs font-bold text-black tracking-wide uppercase mb-2" id="tone-label">
+            Tone Style
+          </div>
+          <div class="grid grid-cols-3 gap-2 bg-zinc-100 p-1.5 rounded-lg border-2 border-black" id="tone-selector" role="tablist">
+            <!-- Office Email -->
+            <button
+              type="button"
+              id="tone-office"
+              data-tone="Office Email"
+              class="tone-btn py-2 px-2 text-xs sm:text-sm font-bold rounded-md bg-white text-black border border-black hover:bg-yellow-100 transition-all duration-150 text-center cursor-pointer"
+              role="tab"
+              aria-selected="false"
+            >
+              Office Email
+            </button>
+
+            <!-- LinkedIn Flex (Default) -->
+            <button
+              type="button"
+              id="tone-linkedin"
+              data-tone="LinkedIn Flex"
+              class="tone-btn py-2 px-2 text-xs sm:text-sm font-bold rounded-md bg-yellow-300 text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] transition-all duration-150 text-center cursor-pointer"
+              role="tab"
+              aria-selected="true"
+            >
+              LinkedIn Flex
+            </button>
+
+            <!-- Startup Founder -->
+            <button
+              type="button"
+              id="tone-founder"
+              data-tone="Startup Founder"
+              class="tone-btn py-2 px-2 text-xs sm:text-sm font-bold rounded-md bg-white text-black border border-black hover:bg-yellow-100 transition-all duration-150 text-center cursor-pointer"
+              role="tab"
+              aria-selected="false"
+            >
+              Startup Founder
+            </button>
+          </div>
+        </section>
+
+        <!-- Primary Action Button -->
+        <div class="mb-6" id="action-section">
+          <button
+            type="button"
+            id="btn-convert"
+            class="w-full py-3.5 px-4 rounded-lg font-extrabold text-sm sm:text-base text-black bg-yellow-400 hover:bg-yellow-300 active:translate-x-[2px] active:translate-y-[2px] active:shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] border-2 border-black transition-all duration-150 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed shadow-[4px_4px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <span id="btn-label">Convert to Jargon</span>
+          </button>
+        </div>
+
+        <!-- Output Display -->
+        <section id="output-section">
+          <div class="text-xs font-bold text-black tracking-wide uppercase mb-2" id="output-title">
+            Result
+          </div>
+          <div
+            id="output-box"
+            class="bg-zinc-50 border-2 border-black rounded-lg p-4 min-h-[96px] flex flex-col justify-between transition-colors shadow-[3px_3px_0px_0px_rgba(0,0,0,1)]"
+          >
+            <p id="output-content" class="text-sm sm:text-base text-zinc-500 leading-relaxed italic">
+              Your transformed jargon will appear here.
+            </p>
+            
+            <div id="output-actions" class="mt-4 pt-3 border-t-2 border-black/20 flex items-center gap-2 justify-end">
+              <button
+                type="button"
+                id="btn-copy"
+                disabled
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-yellow-200 disabled:opacity-40 disabled:hover:bg-white text-xs font-bold text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer disabled:cursor-not-allowed"
+              >
+                <span id="btn-copy-label">📋 Copy</span>
+              </button>
+
+              <button
+                type="button"
+                id="btn-copy-resume"
+                disabled
+                class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-white hover:bg-yellow-200 disabled:opacity-40 disabled:hover:bg-white text-xs font-bold text-black border-2 border-black shadow-[2px_2px_0px_0px_rgba(0,0,0,1)] active:translate-x-[1px] active:translate-y-[1px] active:shadow-none transition-all cursor-pointer disabled:cursor-not-allowed"
+              >
+                <span id="btn-copy-resume-label">📄 Copy for Resume</span>
+              </button>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- JavaScript Application Logic -->
+    <script type="module">
+      // 1. Config & State
+      let activeTone = "LinkedIn Flex";
+      let isGenerating = false;
+      let currentResult = "";
+
+      const SURPRISE_SENTENCES = [
+        "I drank a cup of coffee",
+        "I slept late and missed work",
+        "Maine chai pee li",
+        "Laptop chal nahi raha",
+        "Mera code phat gaya",
+        "I restarted my router",
+        "Boss ne meeting rakh li",
+        "I fixed a typo in the documentation",
+        "WiFi disconnect ho gaya",
+        "Sent the email without the attachment",
+        "Aaj bohot lazy feel ho raha hai",
+        "I went for a 15 minute walk",
+        "I closed 40 open browser tabs",
+        "Production server down ho gaya",
+        "I muted myself and took a nap during the call"
+      ];
+
+      // Robust Pre-written Local Fallback Matrix
+      const FALLBACK_MATRIX = {
+        "i drank a cup of coffee": {
+          "Office Email": "Successfully executed a low-latency beverage intake protocol to maximize personal operational readiness.",
+          "LinkedIn Flex": "Brewing my morning coffee reminded me that deliberate habits compound into transformational leadership value.",
+          "Startup Founder": "Deploying an autonomous thermal extraction matrix to disrupt cognitive latency across distributed workstreams."
+        },
+        "maine chai pee li": {
+          "Office Email": "Successfully executed a low-latency beverage intake protocol to maximize personal operational readiness.",
+          "LinkedIn Flex": "Taking time for a single cup of tea taught me that sustainable velocity starts with intentional pauses.",
+          "Startup Founder": "Architected a zero-overhead bio-infusion pipeline to scale executive clarity ahead of our next funding cycle."
+        },
+        "i slept late and missed work": {
+          "Office Email": "Due to an unscheduled latency buffer overnight, I am asynchronously realigning my calendar to meet today's milestones.",
+          "LinkedIn Flex": "Missing morning standup forced me to reflect on radical rest as a prerequisite for sustainable elite performance.",
+          "Startup Founder": "Leveraged an extended rest cycle to optimize cognitive throughput and asynchronously realigned availability vectors."
+        },
+        "laptop chal nahi raha": {
+          "Office Email": "Presently liaising with technical support following an unanticipated hardware degradation event.",
+          "LinkedIn Flex": "Encountered a critical infrastructure degradation event today, reminding me that resilience is built during unexpected downtime.",
+          "Startup Founder": "Mitigating an edge compute node failure while hot-swapping local workloads to cloud-native fault-tolerant instances."
+        },
+        "mera code phat gaya": {
+          "Office Email": "Our release build registered an unanticipated edge-case anomaly; triage measures are currently underway.",
+          "LinkedIn Flex": "A production failure tested our squad today, proving that blameless culture converts downtime into compounding wisdom.",
+          "Startup Founder": "Executed automated rollback telemetry after our distributed microservices encountered an adversarial state collision."
+        },
+        "boss ne meeting rakh li": {
+          "Office Email": "Leadership has scheduled an ad-hoc synchronization sync to circulate high-priority strategic directives.",
+          "LinkedIn Flex": "An impromptu executive sync challenged our status quo and reaffirmed our commitment to mission-critical alignment.",
+          "Startup Founder": "Summoned to an urgent governance forum to re-index our burn rate and accelerate enterprise acquisition velocity."
+        },
+        "i restarted my router": {
+          "Office Email": "Initiated a targeted telemetry reset on local telecommunications infrastructure to remediate degraded packet flow.",
+          "LinkedIn Flex": "Power-cycling the network reminded me that visionary leadership sometimes requires clearing cached paradigms.",
+          "Startup Founder": "Orchestrated a hard reboot of distributed edge ingress gateways to recover sub-millisecond network parity."
+        }
+      };
+
+      function getFallback(text, level) {
+        // Simple word replacement so it never blindly echoes quotes
+        const cleaned = text.toLowerCase()
+          .replace("chai", "bio-active tannin infusion")
+          .replace("tea", "bio-active tannin infusion")
+          .replace("walk", "pedestrian mobility session")
+          .replace("coffee", "caffeine-driven performance boost")
+          .replace("slept", "rested during an off-peak recovery cycle")
+          .replace("sleep", "strategic rest window");
+
+        const fallbacks = {
+          1: `Per my last update regarding how we handled "${cleaned}", we have aligned our cross-functional priorities.`,
+          2: `Taking time to execute a ${cleaned} reminded me that continuous optimization drives scalable growth.`,
+          3: `We are deploying a low-latency ${cleaned} framework to disrupt traditional operational bottlenecks.`
+        };
+        
+        return fallbacks[level] || fallbacks[2];
+      }
+      window.getFallback = getFallback;
+
+      // 2. DOM Elements
+      const thoughtInput = document.getElementById('thought-input');
+      const btnSurprise = document.getElementById('btn-surprise');
+      const toneButtons = document.querySelectorAll('.tone-btn');
+      const btnConvert = document.getElementById('btn-convert');
+      const btnLabel = document.getElementById('btn-label');
+      const outputBox = document.getElementById('output-box');
+      const outputContent = document.getElementById('output-content');
+      const btnCopy = document.getElementById('btn-copy');
+      const btnCopyLabel = document.getElementById('btn-copy-label');
+      const btnCopyResume = document.getElementById('btn-copy-resume');
+      const btnCopyResumeLabel = document.getElementById('btn-copy-resume-label');
+
+      // 3. Tone Selector Logic
+      toneButtons.forEach(button => {
+        button.addEventListener('click', () => {
+          activeTone = button.getAttribute('data-tone');
+          toneButtons.forEach(btn => {
+            btn.classList.remove('bg-yellow-300', 'border-2', 'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]');
+            btn.classList.add('bg-white', 'border', 'hover:bg-yellow-100');
+            btn.setAttribute('aria-selected', 'false');
+          });
+          button.classList.remove('bg-white', 'border', 'hover:bg-yellow-100');
+          button.classList.add('bg-yellow-300', 'border-2', 'shadow-[2px_2px_0px_0px_rgba(0,0,0,1)]');
+          button.setAttribute('aria-selected', 'true');
+        });
+      });
+
+      // 4. Surprise Me Button
+      btnSurprise.addEventListener('click', () => {
+        const item = SURPRISE_SENTENCES[Math.floor(Math.random() * SURPRISE_SENTENCES.length)];
+        thoughtInput.value = item;
+        thoughtInput.focus();
+      });
+
+      // 5. Translation Execution
+      async function convertToJargon() {
+        let text = thoughtInput.value.trim();
+        if (!text) {
+          text = SURPRISE_SENTENCES[Math.floor(Math.random() * SURPRISE_SENTENCES.length)];
+          thoughtInput.value = text;
+        }
+
+        isGenerating = true;
+        btnConvert.disabled = true;
+        btnLabel.textContent = "Over-Engineering...";
+
+        let generatedText = "";
+
+        try {
+          const response = await fetch('/api/generate', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+              text: text,
+              tone: activeTone
+            })
+          });
+
+          if (response.ok) {
+            const data = await response.json();
+            if (data && data.result) {
+              generatedText = data.result.trim();
+            }
+          } else {
+            const errData = await response.json().catch(() => ({}));
+            console.warn("[Overkill] Serverless API responded with error:", response.status, errData);
+          }
+        } catch (err) {
+          console.warn("[Overkill] Network or serverless API call failed, activating local fallback:", err);
+        }
+
+        // Fallback check: Seamless pre-written corporate jargon
+        if (!generatedText) {
+          const normalized = text.toLowerCase().trim();
+          if (FALLBACK_MATRIX[normalized] && FALLBACK_MATRIX[normalized][activeTone]) {
+            generatedText = FALLBACK_MATRIX[normalized][activeTone];
+          } else {
+            const toneToLevel = {
+              "Office Email": 1,
+              "LinkedIn Flex": 2,
+              "Startup Founder": 3
+            };
+            generatedText = getFallback(text, toneToLevel[activeTone] || 2);
+          }
+        }
+
+        // Display Result
+        currentResult = generatedText;
+        outputContent.textContent = generatedText;
+        outputContent.classList.remove('text-zinc-500', 'italic');
+        outputContent.classList.add('text-black', 'font-medium');
+
+        btnCopy.disabled = false;
+        btnCopyResume.disabled = false;
+        btnCopyLabel.textContent = "📋 Copy";
+        btnCopyResumeLabel.textContent = "📄 Copy for Resume";
+
+        isGenerating = false;
+        btnConvert.disabled = false;
+        btnLabel.textContent = "Convert to Jargon";
+      }
+
+      btnConvert.addEventListener('click', convertToJargon);
+
+      // Keyboard Shortcut (Enter or Cmd+Enter)
+      thoughtInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' && (e.metaKey || e.ctrlKey || !e.shiftKey)) {
+          e.preventDefault();
+          convertToJargon();
+        }
+      });
+
+      // 6. Copy Actions
+      async function copyText(str) {
+        try {
+          await navigator.clipboard.writeText(str);
+          return true;
+        } catch {
+          const area = document.createElement('textarea');
+          area.value = str;
+          document.body.appendChild(area);
+          area.select();
+          document.execCommand('copy');
+          document.body.removeChild(area);
+          return true;
+        }
+      }
+
+      btnCopy.addEventListener('click', async () => {
+        if (!currentResult) return;
+        await copyText(currentResult);
+        btnCopyLabel.textContent = "Copied! ✨";
+        setTimeout(() => {
+          btnCopyLabel.textContent = "📋 Copy";
+        }, 1800);
+      });
+
+      btnCopyResume.addEventListener('click', async () => {
+        if (!currentResult) return;
+        const resumeBullet = `• ${currentResult}`;
+        await copyText(resumeBullet);
+        btnCopyResumeLabel.textContent = "Copied for Resume! 📄";
+        setTimeout(() => {
+          btnCopyResumeLabel.textContent = "📄 Copy for Resume";
+        }, 1800);
+      });
+    </script>
+  </body>
+</html>
