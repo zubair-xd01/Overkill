@@ -66,7 +66,7 @@
           ></textarea>
         </section>
 
-        <!-- Tone Selector (Segmented Pill Buttons) -->
+        <!-- Tone Selector -->
         <section class="mb-6" id="tone-section">
           <div class="text-xs font-bold text-black tracking-wide uppercase mb-2" id="tone-label">
             Tone Style
@@ -159,9 +159,8 @@
       </div>
     </main>
 
-    <!-- JavaScript Application Logic -->
+    <!-- Application Script -->
     <script type="module">
-      // 1. Config & State
       let activeTone = "LinkedIn Flex";
       let isGenerating = false;
       let currentResult = "";
@@ -184,7 +183,6 @@
         "I muted myself and took a nap during the call"
       ];
 
-      // Robust Pre-written Local Fallback Matrix
       const FALLBACK_MATRIX = {
         "i drank a cup of coffee": {
           "Office Email": "Successfully executed a low-latency beverage intake protocol to maximize personal operational readiness.",
@@ -224,7 +222,6 @@
       };
 
       function getFallback(text, level) {
-        // Simple word replacement so it never blindly echoes quotes
         const cleaned = text.toLowerCase()
           .replace("chai", "bio-active tannin infusion")
           .replace("tea", "bio-active tannin infusion")
@@ -243,7 +240,6 @@
       }
       window.getFallback = getFallback;
 
-      // 2. DOM Elements
       const thoughtInput = document.getElementById('thought-input');
       const btnSurprise = document.getElementById('btn-surprise');
       const toneButtons = document.querySelectorAll('.tone-btn');
@@ -256,7 +252,7 @@
       const btnCopyResume = document.getElementById('btn-copy-resume');
       const btnCopyResumeLabel = document.getElementById('btn-copy-resume-label');
 
-      // 3. Tone Selector Logic
+      // Tone Selection
       toneButtons.forEach(button => {
         button.addEventListener('click', () => {
           activeTone = button.getAttribute('data-tone');
@@ -271,14 +267,14 @@
         });
       });
 
-      // 4. Surprise Me Button
+      // Surprise Me
       btnSurprise.addEventListener('click', () => {
         const item = SURPRISE_SENTENCES[Math.floor(Math.random() * SURPRISE_SENTENCES.length)];
         thoughtInput.value = item;
         thoughtInput.focus();
       });
 
-      // 5. Translation Execution
+      // Convert via Vercel Backend Route
       async function convertToJargon() {
         let text = thoughtInput.value.trim();
         if (!text) {
@@ -295,9 +291,7 @@
         try {
           const response = await fetch('/api/generate', {
             method: 'POST',
-            headers: {
-              'Content-Type': 'application/json'
-            },
+            headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
               text: text,
               tone: activeTone
@@ -311,13 +305,13 @@
             }
           } else {
             const errData = await response.json().catch(() => ({}));
-            console.warn("[Overkill] Serverless API responded with error:", response.status, errData);
+            console.warn("[Overkill] API route returned error:", response.status, errData);
           }
         } catch (err) {
-          console.warn("[Overkill] Network or serverless API call failed, activating local fallback:", err);
+          console.warn("[Overkill] Network error, calling fallback:", err);
         }
 
-        // Fallback check: Seamless pre-written corporate jargon
+        // Local Fallback Evaluation
         if (!generatedText) {
           const normalized = text.toLowerCase().trim();
           if (FALLBACK_MATRIX[normalized] && FALLBACK_MATRIX[normalized][activeTone]) {
@@ -332,7 +326,7 @@
           }
         }
 
-        // Display Result
+        // Render Output
         currentResult = generatedText;
         outputContent.textContent = generatedText;
         outputContent.classList.remove('text-zinc-500', 'italic');
@@ -350,7 +344,7 @@
 
       btnConvert.addEventListener('click', convertToJargon);
 
-      // Keyboard Shortcut (Enter or Cmd+Enter)
+      // Keyboard Shortcut
       thoughtInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter' && (e.metaKey || e.ctrlKey || !e.shiftKey)) {
           e.preventDefault();
@@ -358,7 +352,7 @@
         }
       });
 
-      // 6. Copy Actions
+      // Copy Utilities
       async function copyText(str) {
         try {
           await navigator.clipboard.writeText(str);
@@ -378,19 +372,14 @@
         if (!currentResult) return;
         await copyText(currentResult);
         btnCopyLabel.textContent = "Copied! ✨";
-        setTimeout(() => {
-          btnCopyLabel.textContent = "📋 Copy";
-        }, 1800);
+        setTimeout(() => { btnCopyLabel.textContent = "📋 Copy"; }, 1800);
       });
 
       btnCopyResume.addEventListener('click', async () => {
         if (!currentResult) return;
-        const resumeBullet = `• ${currentResult}`;
-        await copyText(resumeBullet);
+        await copyText(`• ${currentResult}`);
         btnCopyResumeLabel.textContent = "Copied for Resume! 📄";
-        setTimeout(() => {
-          btnCopyResumeLabel.textContent = "📄 Copy for Resume";
-        }, 1800);
+        setTimeout(() => { btnCopyResumeLabel.textContent = "📄 Copy for Resume"; }, 1800);
       });
     </script>
   </body>
